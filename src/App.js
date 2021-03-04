@@ -3,8 +3,8 @@ import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
 import s from './fadeModules/fadeAppTitle.module.css';
-import fadeAlert from './fadeModules/fadeAppAlert.module.css';
-import fadeFilter from './fadeModules/fadeFilter.module.css';
+// import fadeAlert from './fadeModules/fadeAppAlert.module.css';
+// import fadeFilter from './fadeModules/fadeFilter.module.css';
 
 function App() {
   return (
