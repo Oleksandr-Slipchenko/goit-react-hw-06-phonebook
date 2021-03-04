@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import s from './ContactForm.module.css';
 import fadeAlert from '../../fadeModules/fadeContactFormAlert.module.css';
 import { CSSTransition } from 'react-transition-group';
-// import { v4 as uuid } from 'uuid';
-
-// ///////////////
 import { connect } from 'react-redux';
 import contactsActions from '../../redux/contacts/contacts-actions';
 
@@ -19,8 +16,6 @@ const INITIAL_STATE = {
 class ContactForm extends Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
-
-    // onCheckUnique: PropTypes.func.isRequired,
   };
 
   state = INITIAL_STATE;
@@ -36,31 +31,19 @@ class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    const { onSubmit, contacts } = this.props;
-    // const isValidateForm = this.validateForm();
+    const { onSubmit } = this.props;
+    const isValidateForm = this.validateForm();
 
-    // if (!isValidateForm) return;
+    if (!isValidateForm) return;
 
     onSubmit(name, number);
     this.resetForm();
   };
 
-  // /////
-
-  // handleCheckUnique = name => {
-  // const { contacts } = this.state;
-  // const isExistContact = !!contacts.find(contact => contact.name === name);
-  // isExistContact &&
-  //   this.setState({ alert: true, message: 'This contact already exists' });
-  // setTimeout(() => this.setState({ alert: false, message: '' }), 2000);
-  // return !isExistContact;
-  // };
-
-  // /////
-
   validateForm = () => {
     const { name, number } = this.state;
     const { contacts } = this.props;
+
     if (!name || !number) {
       this.setState({ alert: true, message: 'Some field is empty' });
       setTimeout(() => this.setState({ alert: false, message: '' }), 2000);
@@ -73,8 +56,6 @@ class ContactForm extends Component {
       this.setState({ alert: true, message: 'This contact already exists' });
     setTimeout(() => this.setState({ alert: false, message: '' }), 2000);
     return !isExistContact;
-
-    // return onCheckUnique(name);
   };
 
   resetForm = () => {
@@ -132,9 +113,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (number, name) =>
-    dispatch(contactsActions.addContact(number, name)),
+  onSubmit: (name, number) =>
+    dispatch(contactsActions.addContact(name, number)),
 });
 
-// export default ContactForm;
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

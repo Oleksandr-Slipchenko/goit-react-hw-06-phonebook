@@ -2,11 +2,11 @@ import types from './contacts-types';
 import { createAction } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
 
-const addContact = createAction('contacts/add', (number, name) => ({
+const addContact = createAction('contacts/add', (name, number) => ({
   payload: {
     id: uuid(),
-    number,
     name,
+    number,
   },
 }));
 

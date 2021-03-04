@@ -1,8 +1,5 @@
-import React from 'react';
-// ////
 import { connect } from 'react-redux';
 import contactsActions from '../../redux/contacts/contacts-actions';
-// /////
 import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 import fadeStyles from '../../fadeModules/fadeContactList.module.css';
@@ -10,7 +7,6 @@ import ContactListItem from './ContactListItem';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const ContactsList = ({ contacts, onRemove }) => {
-  // if (contacts.length === 0) return null;
   return (
     <TransitionGroup component="ul" className={s.contactList}>
       {contacts.map(contact => (
@@ -22,16 +18,16 @@ const ContactsList = ({ contacts, onRemove }) => {
   );
 };
 
-// ContactsList.propTypes = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.exact({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     }),
-//   ).isRequired,
-//   onRemove: PropTypes.func.isRequired,
-// };
+ContactsList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  onRemove: PropTypes.func.isRequired,
+};
 
 const getVisibleContacts = (allContacts, filter) => {
   const normalizedFilter = filter.toLowerCase();
@@ -48,5 +44,4 @@ const mapDispatchToProps = dispatch => ({
   onRemove: id => dispatch(contactsActions.removeContact(id)),
 });
 
-// export default ContactsList;
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);
