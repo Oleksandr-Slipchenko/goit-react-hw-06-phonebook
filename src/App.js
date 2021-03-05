@@ -18,19 +18,22 @@ function App() {
       >
         <h1 className={s.phoneBookTitle}>Phonebook</h1>
       </CSSTransition>
+
       <ContactForm />
+
       {/* <CSSTransition
-          in={contacts.length > 1}
-          appear={true}
-          timeout={250}
-          unmountOnExit
-          classNames={fadeFilter}
+        in={contacts.length > 1}
+        appear={true}
+        timeout={250}
+        unmountOnExit
+        classNames={fadeFilter}
       > */}
       <div className={s.findContacts}>
         <h2 className={s.findContactsTitle}>Find contacts</h2>
         <Filter />
       </div>
       {/* </CSSTransition> */}
+
       <ContactList />
     </div>
   );
